@@ -11,7 +11,7 @@ import chess.pgn
 import cv2
 
 from lpspectator.visualize_fen import (
-    visualize_fen,
+    generate_fen_image,
     add_evaluation_bar_to_plot,
     add_boom_lobsterpincer_mate_to_plot,
     add_boom_checkmate_to_plot,
@@ -79,7 +79,7 @@ def process_updated_board(
     fen = board.fen().split(" ")[0]
     print(f"\tPredicted FEN: {fen}")
     print(f"\tFull FEN: {board.fen()}")
-    fen_image = visualize_fen(fen)
+    fen_image = generate_fen_image(fen)
 
     cv2.imshow("Current position", cv2.cvtColor(fen_image, cv2.COLOR_RGB2BGR))
     cv2.waitKey(1)

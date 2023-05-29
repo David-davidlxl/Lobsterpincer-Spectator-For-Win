@@ -16,12 +16,12 @@ THICKNESS = 2
 TEXT_TO_BOARD_RATIO = 0.1
 
 
-def visualize_fen(fen: str):
-    """Visualize an FEN string.
+def generate_fen_image(fen: str):
+    """Generate the image represented by an FEN string.
 
     :param fen: FEN string.
 
-    :return: Image represented by the FEN string.
+    :return: RGB image represented by the FEN string.
     """
     # img_url_template = "https://backscattering.de/web-boardimage/board.png?fen={}&size=256"
     img_url_template = "https://fen2image.chessvision.ai/{}"
@@ -483,7 +483,7 @@ if __name__ == "__main__":
     # fen = "r1bqkbnr/pp1pppp1/2n4p/2p5/2B1P3/5Q2/PPPP1PPP/RNB1K1NR"
     fen = "r1bqkb1r/pp1npQpp/5n2/2pp4/3PP3/2N5/PPP2PPP/R1B1KBNR"
 
-    fen_image = visualize_fen(fen)
+    fen_image = generate_fen_image(fen)
     # cv2.namedWindow('FEN visualization', cv2.WINDOW_FREERATIO)
     fen_image = add_evaluation_bar_to_plot(0, fen_image)
 

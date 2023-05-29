@@ -20,7 +20,7 @@ from lpspectator.evaluate_position import (
     quit_engine,
 )
 from lpspectator.visualize_fen import (
-    visualize_fen,
+    generate_fen_image,
     add_last_move_critical_moment_and_whose_turn_to_plot,
     add_evaluation_bar_to_plot,
 )
@@ -67,7 +67,7 @@ def initialize_lpspectator(
 
     previous_fen = board.fen().split(" ")[0]
 
-    fen_image = visualize_fen(previous_fen)
+    fen_image = generate_fen_image(previous_fen)
     game = chess.pgn.Game()
     game.setup(board)
     pgn_str = ""

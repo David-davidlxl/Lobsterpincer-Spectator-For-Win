@@ -132,9 +132,9 @@ if __name__ == "__main__":  # Note: make sure to switch to the "lpspectator" dir
     print(f"\tDetected move: {detected_move}")
     print(f"\tThis prediction took {finish_time - start_time} s")
 
-    from visualize_fen import visualize_fen
+    from visualize_fen import generate_fen_image
 
-    fen_image = visualize_fen(fen)
+    fen_image = generate_fen_image(fen)
     cv2.imshow("Predicted FEN", cv2.cvtColor(fen_image, cv2.COLOR_RGB2BGR))
     cv2.waitKey(0)
     cv2.destroyAllWindows()

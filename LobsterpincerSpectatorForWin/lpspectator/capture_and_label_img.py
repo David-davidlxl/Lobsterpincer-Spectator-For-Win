@@ -256,7 +256,7 @@ if __name__ == "__main__":
 
     else:  # Capture and label images
         import chess.pgn
-        from visualize_fen import visualize_fen, add_next_move_to_plot
+        from visualize_fen import generate_fen_image, add_next_move_to_plot
 
         with open("game_to_be_played.pgn") as pgn:
             game = chess.pgn.read_game(pgn)
@@ -264,7 +264,7 @@ if __name__ == "__main__":
         moves = [move for move in game.mainline_moves()]
 
         count = 0
-        fen_image = visualize_fen(board.board_fen())
+        fen_image = generate_fen_image(board.board_fen())
         fen_image = add_next_move_to_plot(board.san(moves[count]), fen_image)
         cv2.imshow("Current position", cv2.cvtColor(fen_image, cv2.COLOR_RGB2BGR))
         cv2.waitKey(200)
@@ -302,7 +302,7 @@ if __name__ == "__main__":
                 )
                 count += 1
                 if count < len(moves):
-                    fen_image = visualize_fen(board.board_fen())
+                    fen_image = generate_fen_image(board.board_fen())
                     fen_image = add_next_move_to_plot(
                         board.san(moves[count]), fen_image
                     )
