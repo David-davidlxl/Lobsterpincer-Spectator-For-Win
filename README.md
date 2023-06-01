@@ -25,7 +25,7 @@ Lobsterpincer Spectator (named after the "Lobster Pincer mate") is a chessboard 
 
 ## Software Installation
 
-The only dependencies of “ChessPieceModelTraining” are [`numpy`](https://pypi.org/project/numpy/) and [`Pillow`](https://pypi.org/project/Pillow/), which are automatically installed during the installation procedure for "LobsterpincerSpectatorForWin" presented below.
+The only dependencies of "ChessPieceModelTraining" are [`numpy`](https://pypi.org/project/numpy/) and [`Pillow`](https://pypi.org/project/Pillow/), which are automatically installed during the installation procedure for "LobsterpincerSpectatorForWin" presented below.
 
 The installation procedure (for "LobsterpincerSpectatorForWin") below has been tested to be fully functional for Windows 11.
 
@@ -93,7 +93,7 @@ Next, process the data and obtain the trained model as follows:
 
 3. Compress the "ChessPieceModelTraining/DataSplitter/data" folder into a "data.zip" ZIP-file (in the "ChessPieceModelTraining/DataSplitter" folder).
 
-4. Open "SqueezeNet1p1_model_training.ipynb" (in "ChessPieceModelTraining/ModelTrainer") with Google Colab, enable GPU on Google Colab, and upload the "data.zip" (in the "ChessPieceModelTraining/DataSplitter" folder) and "models.zip" file (in the "ChessPieceModelTraining/ModelTrainer" folder) to Google Colab.
+4. Open "SqueezeNet1p1_model_training.ipynb" (in "ChessPieceModelTraining/ModelTrainer") with Google Colab, enable GPU on Google Colab, and upload the "data.zip" (in "ChessPieceModelTraining/DataSplitter") and "models.zip" (in "ChessPieceModelTraining/ModelTrainer") files to Google Colab.
 
 5. Run the entire "SqueezeNet1p1_model_training.ipynb" notebook to perform transfer learning (which should take at least a couple of hours, but exactly how long it takes depends on how much image data you collected in the first place).
 
@@ -115,9 +115,9 @@ To use the main program, "lobsterpincer_spectator.py" (in "LobsterpincerSpectato
 
 4. Run "lobsterpincer_spectator.py" from the "LobsterpincerSpectatorForWin" directory and tune the slider values.
 
-5. Play the game against your opponent. At any point during the game, feel free to press 'p' to pause the program, press 'r' to resume the program, or press 'q' to quit the program.
+5. Play the game against your opponent (the game you play has nothing to do with the "LobsterpincerSpectatorForWin/game_to_be_played.pgn" file, by the way, which is only relevant to data collection). At any point during the game, feel free to press 'p' to pause the program, press 'r' to resume the program, or press 'q' to quit the program.
 
-6. After the game, feel free to use "saved_game.pgn" for postgame analysis.
+6. After the game, feel free to use "saved_game.pgn" (in "LobsterpincerSpectatorForWin") for postgame analysis.
 
 The video in the [Overview](#overview) section demos the case where `BOARD_CORNERS` is set to `[[0, 0], [1199, 0], [1199, 1199], [0, 1199]]`. In this case, manual (predetermined) chessboard detection is used, which accelerates the move-registration process (each move takes at most 6 seconds to register with Intel Core i5-8250U). If `BOARD_CORNERS` is set to `None`, automatic (neural-network-based) chessboard detection is used, and each moves takes at most 8 seconds to register with Intel Core i5-8250U.
 
