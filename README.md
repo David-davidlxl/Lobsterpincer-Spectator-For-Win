@@ -11,13 +11,13 @@
 
 ## Overview
 
-Lobsterpincer Spectator (named after the "Lobster Pincer mate") is a chessboard processor that gives players feedback in real time. Specifically, it features the following functionalities:
+Lobsterpincer Spectator (named after the "Lobster Pincer mate") is a chessboard processor that gives players feedback in real time. There are three versions of the Lobsterpincer Spectator: Windows standalone version, [Raspberry Pi's standalone version](https://github.com/David-davidlxl/Lobsterpincer-Spectator-For-RPi), and [Windows and Raspberry Pi's combination version](https://github.com/David-davidlxl/Lobsterpincer-Spectator-For-Win-RPi-Combo). This repository contains the Windows standalone version of the Lobsterpincer Spectator. This version is the most compact of the three in terms of hardware (no hardware configuration is required), and it has the following features:
 
-- alert the players at critical moments of the game
-- inform the players of the evaluation of the current position
-- show the players the move played in the previous position
-
-This repository contains the Windows version of the Lobsterpincer Spectator. There is also [a separate repository for the Raspberry Pi version](https://github.com/David-davidlxl/Lobsterpincer-Spectator-For-RPi).
+- register each move in less than 6 seconds with manual chessboard detection (with Intel Core i5-8250U)
+  - register each move in less than 8 seconds with automatic chessboard detection (with Intel Core i5-8250U)
+- alert the players (via speaker) at critical moments of the game
+- inform the players (via OpenCV window) of the evaluation of the current position
+- show the players (via OpenCV window) the move played in the previous position
 
 ![](README%20attachments/High-level%20diagram%20for%20overview.png)
 
@@ -27,11 +27,12 @@ This repository contains the Windows version of the Lobsterpincer Spectator. The
 
 The only dependencies of “ChessPieceModelTraining” are [`numpy`](https://pypi.org/project/numpy/) and [`Pillow`](https://pypi.org/project/Pillow/), which are automatically installed during the installation procedure for "LobsterpincerSpectatorForWin" presented below.
 
-The installation procedure (for "LobsterpincerSpectatorForWin") below is tested to be fully functional for Windows 11.
+The installation procedure (for "LobsterpincerSpectatorForWin") below has been tested to be fully functional for Windows 11.
 
 First, install Python 3.10 from Microsoft Store. It is important NOT to install Python 3.11 instead as it is currently incompatible with [`onnxruntime`](https://pypi.org/project/onnxruntime/).
 
 Then make sure your `pip` is up to date by running the following command in Windows PowerShell:
+
 ```
 pip install --upgrade pip
 ```
@@ -98,7 +99,7 @@ Next, process the data and obtain the trained model as follows:
 
 6. Download the "SqueezeNet1p1_all_last.onnx" (and, optionally, "SqueezeNet1p1_all_last.h5") from Google Colab (in the "models" folder) to the "LobsterpincerSpectatorForWin/livechess2fen/selected_models" folder.
 
-The following video walks through the entire data-collection-and-model-training procedure. Only 5 images under the same lighting condition are collected in this demo in order to keep the video brief; you want to collect hundreds of images under various lighting conditions in practice. Also, even though Raspberry Pi is used for data collection in this demo, the process is very much the same for a Windows computer.
+The following video walks through the entire data-collection-and-model-training procedure. Only 5 images under the same lighting condition are collected in this demo in order to keep the video brief; you want to collect hundreds of images under various lighting conditions in practice. Also, even though ["LobsterpincerSpectatorForRPi"](https://github.com/David-davidlxl/Lobsterpincer-Spectator-For-RPi/tree/main/LobsterpincerSpectatorForRPi) and Raspberry Pi are used for data collection in this demo, the procedure is very much the same for "LobsterpincerSpectatorForWin" and a Windows computer.
 
 [![](https://markdown-videos.deta.dev/youtube/Yl_WZxMeNjk)](https://youtu.be/Yl_WZxMeNjk)
 
@@ -106,17 +107,19 @@ The following video walks through the entire data-collection-and-model-training 
 
 To use the main program, "lobsterpincer_spectator.py" (in "LobsterpincerSpectatorForWin"):
 
-1. Open the app on your phone (that turns your phone into an IP camera), mount the phone on some kind of physical structure, and edit the `IMAGE_SOURCE` variable in "capture_and_label_img.py" (see step 1 of the data-collection procedure above).
+1. Make sure your phone and Windows computer are in the same Wi-Fi network.
 
-2. Edit the `FULL_FEN_OF_STARTING_POSITION`, `A1_POS`, and `BOARD_CORNERS` variables in "capture_and_label_img.py" (feel free to edit other variables as well, but these three are generally the most relevant to the user).
+2. Open the app on your phone (that turns your phone into an IP camera), mount the phone on some kind of physical structure, and edit the `IMAGE_SOURCE` variable in "capture_and_label_img.py" (see step 1 of the data-collection procedure above).
 
-3. Run "lobsterpincer_spectator.py" from the "LobsterpincerSpectatorForWin" directory and tune the slider values.
+3. Edit the `FULL_FEN_OF_STARTING_POSITION`, `A1_POS`, and `BOARD_CORNERS` variables in "lobsterpincer_spectator.py" (feel free to edit other variables as well, but these three are generally the most relevant to the user).
 
-4. Play the game against your opponent. At any point during the game, feel free to press 'p' to pause the program, press 'r' to resume the program, or press 'q' to quit the program.
+4. Run "lobsterpincer_spectator.py" from the "LobsterpincerSpectatorForWin" directory and tune the slider values.
 
-5. After the game, feel free to use "saved_game.pgn" for postgame analysis.
+5. Play the game against your opponent. At any point during the game, feel free to press 'p' to pause the program, press 'r' to resume the program, or press 'q' to quit the program.
 
-The video in the [Overview](#overview) section demos the case where `BOARD_CORNERS` is set to `[[0, 0], [1199, 0], [1199, 1199], [0, 1199]]`. In this case, manual (predetermined) chessboard detection is used, which accelerates the move-registration process (each move takes about 5 seconds to register with Intel(R) Core(TM) i5-8250U). If `BOARD_CORNERS` is set to `None`, automatic (neural-network-based) chessboard detection is used, and each moves takes about 6 seconds to register with Intel(R) Core(TM) i5-8250U.
+6. After the game, feel free to use "saved_game.pgn" for postgame analysis.
+
+The video in the [Overview](#overview) section demos the case where `BOARD_CORNERS` is set to `[[0, 0], [1199, 0], [1199, 1199], [0, 1199]]`. In this case, manual (predetermined) chessboard detection is used, which accelerates the move-registration process (each move takes at most 6 seconds to register with Intel Core i5-8250U). If `BOARD_CORNERS` is set to `None`, automatic (neural-network-based) chessboard detection is used, and each moves takes at most 8 seconds to register with Intel Core i5-8250U.
 
 ## Technical Details
 
@@ -126,13 +129,15 @@ The figure below shows a high-level diagram for the signal-processing workflow:
 
 There are a few things to note:
 
-1. The chess-piece model discussed in the [Data Collection and Model Training](#data-collection-and-model-training) section above is responsible for move detection.
+1. The Windows computer is responsible for all the heavy computation.
 
-2. After each move is registered (i.e., validated), a sound effect is played. There are sound effects for making "regular" moves, capturing, castling, promoting, checking, and checkmating. These are the same sound effects that you would hear in an online game on [chess.com](http://www.chess.com).
+2. The chess-piece model discussed in the [Data Collection and Model Training](#data-collection-and-model-training) section above is responsible for move detection.
 
-3. Engine evaluation is accomplished with [Stockfish](https://stockfishchess.org/) 15.1 at depth 17, [which corresponds to an ELO rating of about 2695](https://chess.stackexchange.com/questions/8123/stockfish-elo-vs-search-depth/8125#8125).
+3. After each move is registered (i.e., validated), a sound effect is played. There are sound effects for making "regular" moves, capturing, castling, promoting, checking, and checkmating. These are the same sound effects that you would hear in an online game on [chess.com](http://www.chess.com).
 
-4. A critical moment is defined as one when one of the two conditions is satisfied:
+4. Engine evaluation is accomplished with [Stockfish](https://stockfishchess.org/) 15.1 at depth 17, [which corresponds to an ELO rating of about 2695](https://chess.stackexchange.com/questions/8123/stockfish-elo-vs-search-depth/8125#8125).
+
+5. A critical moment is defined as one when one of the two conditions is satisfied:
 
    1. The best move forces a checkmate (against the opponent) whereas the second-best move does not.
    
@@ -140,13 +145,15 @@ There are a few things to note:
 
     The precise definition can be found in the `is_critical_moment()` function in "evaluate_position.py" (in "LobsterpincerSpectatorForWin/lpspectator").
 
-5. Besides the ability to detect critical moments, the program also detects Harry the h-pawn and the Lobster Pincer mate. When a player pushes Harry the h-pawn into (or further into) the opponent's territory (but Harry has not promoted into a queen yet) and the player pushing the h-pawn is not losing (a position is considered losing if its floating-point evaluation is at most -2), the "Look at Harry! Come on, Harry!" audio is played. When the Lobster Pincer mate happens, a special piece of audio is played as well.
+6. Besides the ability to detect critical moments, the program also detects Harry the h-pawn and the Lobster Pincer mate. When a player pushes Harry the h-pawn into (or further into) the opponent's territory (but Harry has not promoted into a queen yet) and the player pushing the h-pawn is not losing (a position is considered losing if its floating-point evaluation is at most -2), the "Look at Harry! Come on, Harry!" audio is played. When the Lobster Pincer mate happens, a special piece of audio is played as well.
 
 ## Acknowledgements
 
 I give special thanks to David Mallasén Quintana. This project was made possible by Quintana's work: [LiveChess2FEN](https://github.com/davidmallasen/LiveChess2FEN). LiveChess2FEN provided me with the foundation for chess-piece identification. The "models.zip" file (in "ChessPieceModelTraining/ModelTrainer") came directly from the LiveChess2FEN repository, and the "SqueezeNet1p1_model_training.ipynb" notebook (in "ChessPieceModelTraining/ModelTrainer") was written largely based on the work in "cpmodels" folder in the repository as well.
 
-I also thank [Simon Williams](https://www.youtube.com/@GingerGM) and [Daniel Naroditsky](https://www.youtube.com/@DanielNaroditskyGM) for creating the entertaining YouTube videos that I used to create the audio files. They also inspired and helped me to become a much stronger chess player than I would be without them.
+I also thank Linmiao Xu for his [chessboard-recognizer project](https://github.com/linrock/chessboard-recognizer), which helped me develop the "ChessPieceModelTraining/BoardSlicer" program.
+
+Finally, I thank [Simon Williams](https://www.youtube.com/@GingerGM) and [Daniel Naroditsky](https://www.youtube.com/@DanielNaroditskyGM) for creating the entertaining YouTube videos that I used to create the audio files. They also inspired and helped me to become a much stronger chess player than I would be without them.
 
 ## Contact
 

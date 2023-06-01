@@ -52,8 +52,8 @@ def initialize_lpspectator(
             "\tFailed to initialize the Stockfish engine because of the lack of permission"
         )
         sys.exit()
-
     print("\tStockfish engine has been successfully initialized!")
+
     board = chess.Board(full_fen_of_starting_position)
     if board.is_checkmate() or board.is_stalemate():
         print(
@@ -64,9 +64,7 @@ def initialize_lpspectator(
         )
         quit_engine(engine)
         sys.exit()
-
     previous_fen = board.fen().split(" ")[0]
-
     fen_image = generate_fen_image(previous_fen)
     game = chess.pgn.Game()
     game.setup(board)
@@ -86,6 +84,7 @@ def initialize_lpspectator(
     cv2.waitKey(200)
     if critical_moment:
         play_critical_moment_audio()
+    game_over = False
     print("\tBoard has been successfully initialized!")
 
     cap = start_camera()
@@ -95,9 +94,8 @@ def initialize_lpspectator(
         print("\t\tPlease edit the `IMAGE_SOURCE` variable and rerun the program")
         quit_engine(engine)
         sys.exit()
-    print("\tCamera has been successfully initialized!\n")
     last_time_of_img_capture = time.time()
-    game_over = False
+    print("\tCamera has been successfully initialized!\n")
 
     if board_corners is None:
         print(

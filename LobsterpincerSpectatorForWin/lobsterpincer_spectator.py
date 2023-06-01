@@ -1,10 +1,12 @@
 """This is the main program.
 
-Make sure to edit `IMAGE_SOURCE` in "capture__and_label_img.py" (in the "lpspectator"
-folder) before running this main program.
+Before running this main program, make sure to
 
-Also, make sure to set the terminal's directory to "LobsterpincerSpectatorForWin"
-(the directory that directly contains this file) before running this main program.
+1) edit `IMAGE_SOURCE` in "capture_and_label_img.py" (in the "lpspectator"
+folder)
+
+2) set the terminal's directory to "LobsterpincerSpectatorForWin"
+(the directory that directly contains this file)
 """
 
 
@@ -122,7 +124,7 @@ PRINT_BEST_MOVES_IN_TERMINAL = False
 evaluating each position."""
 
 TIME_BETWEEN_CONSECUTIVE_IMG_CAPTURES = (
-    1  # This means we capture 1 image per second when tuning the sliders
+    1  # This means we capture 1 image per second when tuning the slider values
 )
 """Parameter determining image-capture frequency during slider-value tuning."""
 

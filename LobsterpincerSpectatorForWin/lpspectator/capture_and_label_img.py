@@ -8,7 +8,7 @@ import numpy as np
 import chess
 
 IMAGE_SOURCE = "http://10.0.0.45:8080/video"
-# IMAGE_SOURCE = "http://35.6.158.92:8080/video"
+# IMAGE_SOURCE = "http://35.6.92.68:8080/video"
 # IMAGE_SOURCE = "rtsp://192.168.248.88:554/out.h264"
 # IMAGE_SOURCE = 0
 """Global variable specifying the image source."""
@@ -222,7 +222,10 @@ if __name__ == "__main__":
         sys.exit()
     print("Initialization complete!")
 
-    if not os.path.exists("game_to_be_played.pgn"):  # Display the LED and LCD
+    if not os.path.exists(
+        "game_to_be_played.pgn"
+    ):  # Display the perspective-transformed image
+        window_name = "LED lights and LCD screen" if len(sys.argv) != 2 else sys.argv[1]
         count = 0
         _, previous_img = cap.read()
         last_time_of_img_capture = time.time()
@@ -238,9 +241,7 @@ if __name__ == "__main__":
                 last_time_of_img_capture = time.time()
 
             img_perspective_transformed = (
-                visualize_slider_values_and_get_transformed_img(
-                    img, "LED lights and LCD screen"
-                )
+                visualize_slider_values_and_get_transformed_img(img, window_name)
             )
 
             pressed_key = cv2.waitKey(1)
