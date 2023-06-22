@@ -1,13 +1,19 @@
-# Lobsterpincer Spectator: Real-Time Chessboard Processor
+<h1 align="center">Lobsterpincer Spectator:
 
-- [Lobsterpincer Spectator: Real-Time Chessboard Processor](#lobsterpincer-spectator-real-time-chessboard-processor)
-  - [Overview](#overview)
-  - [Software Installation](#software-installation)
-  - [Data Collection and Model Training](#data-collection-and-model-training)
-  - [Usage of Main Program](#usage-of-main-program)
-  - [Technical Details](#technical-details)
-  - [Acknowledgements](#acknowledgements)
-  - [Contact](#contact)
+Real-Time Chessboard Processor</h1>
+
+<p align="center">
+<a href="https://github.com/David-davidlxl/Lobsterpincer-Spectator-For-Win/blob/main/LICENSE"><img alt="License: MIT" src="https://black.readthedocs.io/en/stable/_static/license.svg"></a>
+<a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
+</p>
+
+- [Overview](#overview)
+- [Software Installation](#software-installation)
+- [Data Collection and Model Training](#data-collection-and-model-training)
+- [Usage of Main Program](#usage-of-main-program)
+- [Technical Details](#technical-details)
+- [Acknowledgements](#acknowledgements)
+- [Contact](#contact)
 
 ## Overview
 
