@@ -29,6 +29,8 @@ Lobsterpincer Spectator (named after the "Lobster Pincer mate") is a chessboard 
 
 [![](https://markdown-videos.deta.dev/youtube/YRgol4snGFI)](https://youtu.be/YRgol4snGFI)
 
+[![Watch the video](https://img.youtube.com/vi/YRgol4snGFI/maxresdefault.jpg)](https://youtu.be/YRgol4snGFI)
+
 ## Software Installation
 
 The only dependencies of "ChessPieceModelTraining" are [`numpy`](https://pypi.org/project/numpy/) and [`Pillow`](https://pypi.org/project/Pillow/), which are automatically installed during the installation procedure for "LobsterpincerSpectatorForWin" presented below.
@@ -108,6 +110,8 @@ Next, process the data and obtain the trained model as follows:
 The following video walks through the entire data-collection-and-model-training procedure. Only 5 images under the same lighting condition are collected in this demo in order to keep the video brief; you want to collect hundreds of images under various lighting conditions in practice. Also, even though ["LobsterpincerSpectatorForRPi"](https://github.com/David-davidlxl/Lobsterpincer-Spectator-For-RPi/tree/main/LobsterpincerSpectatorForRPi) and Raspberry Pi are used for data collection in this demo, the procedure is very much the same for "LobsterpincerSpectatorForWin" and a Windows computer.
 
 [![](https://markdown-videos.deta.dev/youtube/Yl_WZxMeNjk)](https://youtu.be/Yl_WZxMeNjk)
+
+[![Watch the video](https://img.youtube.com/vi/Yl_WZxMeNjk/maxresdefault.jpg)](https://youtu.be/Yl_WZxMeNjk)
 
 ## Usage of Main Program
 
