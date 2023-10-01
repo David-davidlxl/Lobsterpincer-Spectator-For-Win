@@ -1,4 +1,4 @@
-"""This module contains the `delete` helper function."""
+"""This module contains the `delete()` helper function."""
 
 
 import os
@@ -7,7 +7,8 @@ import os
 def delete(filename: str):
     """Delete a file.
 
-    This function constantly tries deleting a file until the file is deleted.
+    This function constantly tries deleting a file until the file is
+    deleted.
 
     :param filename: Filename of the file to be deleted.
     """
