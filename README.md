@@ -35,7 +35,7 @@ The only dependencies of "ChessPieceModelTraining" are [`numpy`](https://pypi.or
 
 The installation procedure (for "LobsterpincerSpectatorForWin") below has been tested to be fully functional for Windows 11.
 
-First, install Python 3.10 from Microsoft Store. It is important NOT to install Python 3.11 instead as it is currently incompatible with [`onnxruntime`](https://pypi.org/project/onnxruntime/).
+First, install Python 3.11 from Microsoft Store.
 
 Then make sure your `pip` is up to date by running the following command in Windows PowerShell:
 
