@@ -1,6 +1,5 @@
 """This module contains the `delete()` helper function."""
 
-
 import os
 
 
